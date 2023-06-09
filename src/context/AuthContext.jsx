@@ -5,8 +5,9 @@ import {
 	onAuthStateChanged,
 	signOut,
 	GoogleAuthProvider,
-	signInWithPopup,
 	sendPasswordResetEmail,
+	signInWithRedirect,
+	getRedirectResult,
 } from 'firebase/auth';
 import { auth } from '../firebase';
 
@@ -33,7 +34,7 @@ export function AuthProvider({ children }) {
 
 	const loginWithGoogle = () => {
 		const provider = new GoogleAuthProvider();
-		return signInWithPopup(auth, provider);
+		return signInWithRedirect(auth, provider);
 	};
 
 	const logout = () => signOut(auth);
@@ -41,10 +42,19 @@ export function AuthProvider({ children }) {
 	const resetPassword = async email => sendPasswordResetEmail(auth, email);
 
 	useEffect(() => {
-		const unsuscribe = onAuthStateChanged(auth, currentUser => {
+		const unsuscribe = onAuthStateChanged(auth, async currentUser => {
+			if (currentUser) {
+				// Use getRedirectResult to handle the redirect after Google authentication
+				try {
+					await getRedirectResult(auth);
+				} catch (error) {
+					console.log('Error handling redirect:', error);
+				}
+			}
 			setUser(currentUser);
 			setLoading(false);
 		});
+
 		return () => unsuscribe();
 	}, []);
 

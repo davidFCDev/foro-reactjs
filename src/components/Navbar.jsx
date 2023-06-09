@@ -20,13 +20,11 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav>
-			<div>
-				<Link to='/' className='py-1'>
-					<h1>
-						FORUM
-						<img src='' alt='' />
-					</h1>
+		<nav className='border-b '>
+			<div className='w-full flex justify-between items-center p-4'>
+				<Link to='/' className='flex items-center gap-3'>
+					<img src='/public/logo.png' alt='logo' className='w-14' />
+					<img src='/public/tituloLogo.png' alt='logo' className='w-36' />
 				</Link>
 				{user ? (
 					<div>
@@ -41,12 +39,16 @@ const Navbar = () => {
 						</button>
 					</div>
 				) : (
-					<div>
+					<div className='flex gap-2'>
 						<Link to='/login'>
-							<p>Login</p>
+							<p className='px-4 py-2 border border-red-600 bg-red-600 rounded hover:bg-red-500'>
+								Login
+							</p>
 						</Link>
 						<Link to='/register'>
-							<p>Register</p>
+							<p className='px-4 py-2 border border-red-600 rounded hover:bg-red-600'>
+								Register
+							</p>
 						</Link>
 					</div>
 				)}
