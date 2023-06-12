@@ -8,13 +8,17 @@ const PostPage = () => {
 	const post = posts.find(post => post.id === id);
 
 	const handleDelete = () => {
-		removePost(post.id);
-		navigate('/posts');
+		window.confirm('Are you sure you want to delete this post?') &&
+			setTimeout(() => {
+				removePost(id);
+				navigate('/posts');
+			}, 500);
 	};
 
 	if (!post) {
 		return <div>Loading...</div>;
 	}
+
 
 	return (
 		<div className='p-14 w-full min-h-screen'>

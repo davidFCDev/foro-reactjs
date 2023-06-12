@@ -22,6 +22,8 @@ export function PostsProvider({ children }) {
 	const initialState = {
 		title: '',
 		description: '',
+		image: '',
+		createdAt: '',
 	};
 	const [post, setPost] = useState(initialState);
 	const [posts, setPosts] = useState([]);
