@@ -25,7 +25,7 @@ const RegisterPage = () => {
 		setError('');
 		try {
 			await signup(user.email, user.password);
-			navigate('/dashboard');
+			navigate('/posts');
 			toast.success('Registered!');
 		} catch (error) {
 			setError(error.message);
@@ -38,7 +38,7 @@ const RegisterPage = () => {
 				<div className='flex flex-col'>
 					<form
 						onSubmit={handleSubmit}
-						className='flex flex-col gap-2 bg-white text-neutral-800 rounded p-6 '
+						className='flex flex-col gap-2 bg-neutral-100 text-neutral-800 rounded p-6 '
 					>
 						<div className='flex flex-col gap-1'>
 							<label

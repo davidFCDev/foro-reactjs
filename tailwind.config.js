@@ -10,7 +10,8 @@ export default {
         primary: "#051535",
         secondary: "#EF4444",
         tertiary: "#0b1e46",
-        glow: "#D592D7"
+        glow: "#D692D7",
+        glow2: "#0a1c37",
       }
     },
   },

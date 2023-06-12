@@ -10,10 +10,7 @@ const HomePage = () => {
 
 	const addNewPost = e => {
 		e.preventDefault();
-		const currentDate = new Date();
-		const updatedPost = { ...post, createdAt: currentDate };
-		createNewPost(updatedPost);
-		console.log(updatedPost);
+		createNewPost();
 	};
 
 	const redirectToPost = postId => {
@@ -34,7 +31,7 @@ const HomePage = () => {
 
 	return (
 		<div className='w-full min-h-screen'>
-			<h1 className='text-2xl font-semibold text-center p-3 border-b bg-red-600'>
+			<h1 className='text-2xl font-semibold text-center pt-10 '>
 				Welcome to R&M forum
 			</h1>
 			<section className='flex py-5 gap-20'>
@@ -50,14 +47,14 @@ const HomePage = () => {
 							autoFocus
 							value={post.title}
 							onChange={e => setPost({ ...post, title: e.target.value })}
-							className='p-2 rounded text-neutral-700 focus:bg-neutral-100 focus:outline-none'
+							className='p-2 rounded text-neutral-700 bg-neutral-100 focus:bg-neutral-200 focus:outline-none'
 						/>
 						<textarea
 							placeholder='Description'
 							value={post.description}
 							onChange={e => setPost({ ...post, description: e.target.value })}
 							rows={4}
-							className='p-2 rounded text-neutral-700 focus:bg-neutral-100 focus:outline-none'
+							className='p-2 rounded text-neutral-700 bg-neutral-100 focus:bg-neutral-200 focus:outline-none'
 						/>
 						<button className='bg-red-600 rounded py-2 text-md hover:bg-red-500'>
 							Add
@@ -74,7 +71,7 @@ const HomePage = () => {
 							return (
 								<div
 									key={post.id}
-									className='flex gap-6 items-center w-96 border p-4 border-neutral-700 hover:border-neutral-500 hover:cursor-pointer'
+									className='flex gap-6 items-center w-96 border p-4 bg-glow2 border-neutral-700 hover:border-neutral-500 hover:cursor-pointer'
 									onClick={() => redirectToPost(post.id)}
 								>
 									<img
@@ -83,8 +80,10 @@ const HomePage = () => {
 										className='w-14 h-14 rounded-full shadow shadow-neutral-500'
 									/>
 									<div className='flex flex-col w-full'>
-										<h2 className='text-2xl'>{post.title}</h2>
-										<p className='text-xs'>Created: {post.createdAt}</p>
+										<div className='flex justify-between'>
+											<h2 className='text-2xl'>{post.title}</h2>
+										</div>
+										<p className='text-sm'>Created: 12/06/2023 15:30</p>
 									</div>
 								</div>
 							);

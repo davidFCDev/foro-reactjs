@@ -25,6 +25,8 @@ export const updatePost = async post => {
 	await setDoc(doc(db, 'posts', post.id), {
 		title: post.title,
 		description: post.description,
+		image: post.image,
+		createdAt: post.createdAt,
 	});
 };
 
