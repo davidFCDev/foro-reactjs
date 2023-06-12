@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { IoMdLogOut } from 'react-icons/io';
-import { RxDashboard } from 'react-icons/rx';
+import { MdForum } from 'react-icons/md';
+import { FiUser } from 'react-icons/fi';
 import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
@@ -20,22 +21,27 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className='border-b '>
-			<div className='w-full flex justify-between items-center p-4'>
+		<nav className='border-b px-10 py-4'>
+			<div className='w-full flex justify-between items-center'>
 				<Link to='/' className='flex items-center gap-3'>
-					<img src='/public/logo.png' alt='logo' className='w-14' />
-					<img src='/public/tituloLogo.png' alt='logo' className='w-36' />
+					<img src='/logo.png' alt='logo' className='w-14' />
+					<img src='/tituloLogo.png' alt='logo' className='w-36' />
 				</Link>
 				{user ? (
-					<div>
+					<div className='flex gap-5 items-center'>
 						<p>{user.email}</p>
-						<Link to='/dashboard'>
+						<Link to='/posts'>
 							<p>
-								<RxDashboard />
+								<MdForum className='text-2xl hover:text-red-600' />
+							</p>
+						</Link>
+						<Link to='/perfil'>
+							<p>
+								<FiUser className='text-2xl hover:text-red-600' />
 							</p>
 						</Link>
 						<button onClick={handleLogout}>
-							<IoMdLogOut />
+							<IoMdLogOut className='text-2xl hover:text-red-600' />
 						</button>
 					</div>
 				) : (

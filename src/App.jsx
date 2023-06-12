@@ -8,6 +8,8 @@ import RegisterPage from './pages/RegisterPage';
 import { AuthProvider } from './context/AuthContext';
 import { PostsProvider } from './context/PostContext';
 import { Toaster } from 'react-hot-toast';
+import PostPage from './pages/PostPage';
+import PerfilPage from './pages/PerfilPage';
 
 function App() {
 	return (
@@ -19,10 +21,26 @@ function App() {
 						<Routes>
 							<Route path='/' element={<Root />} />
 							<Route
-								path='/dashboard'
+								path='/posts'
 								element={
 									<ProtectedRoute>
 										<HomePage />
+									</ProtectedRoute>
+								}
+							/>
+							<Route
+								path='/posts/:id'
+								element={
+									<ProtectedRoute>
+										<PostPage />
+									</ProtectedRoute>
+								}
+							/>
+							<Route
+								path='/perfil'
+								element={
+									<ProtectedRoute>
+										<PerfilPage />
 									</ProtectedRoute>
 								}
 							/>
