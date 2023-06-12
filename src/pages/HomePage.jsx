@@ -1,20 +1,23 @@
+import { useNavigate } from 'react-router-dom';
 import { usePosts } from '../context/PostContext';
 import { MdDelete } from 'react-icons/md';
 
 const HomePage = () => {
+	const navigate = useNavigate();
 	const {
 		posts,
 		post,
 		setPost,
-		setPosts,
-		updateExistingPost,
 		createNewPost,
-		removePost,
 	} = usePosts();
 
 	const addNewPost = e => {
 		e.preventDefault();
 		createNewPost();
+	};
+
+	const redirectToPost = postId => {
+		navigate(`/posts/${postId}`);
 	};
 
 	return (
@@ -48,7 +51,11 @@ const HomePage = () => {
 				<div className='flex flex-col gap-3'>
 					{posts.map(post => {
 						return (
-							<div key={post.id} className='flex gap-5 items-center w-96'>
+							<div
+								key={post.id}
+								className='flex gap-5 items-center w-96'
+								onClick={() => redirectToPost(post.id)}
+							>
 								<img
 									src='https://laverdadnoticias.com/__export/1596653493935/sites/laverdad/img/2020/08/05/rick_and_morty_cambios_evolucion.jpg_1902800913.jpg'
 									alt='random'
@@ -58,9 +65,6 @@ const HomePage = () => {
 									<h2 className='text-2xl hover:underline hover:cursor-pointer'>
 										{post.title}
 									</h2>
-									<button onClick={() => removePost(post.id)}>
-										<MdDelete className='text-2xl hover:text-red-500' />
-									</button>
 								</div>
 							</div>
 						);

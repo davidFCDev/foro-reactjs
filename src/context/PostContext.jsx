@@ -49,7 +49,7 @@ export function PostsProvider({ children }) {
 
 	const updateExistingPost = async () => {
 		await updatePost(post);
-		toast.success('Recipe updated successfully!');
+		toast.success('Post updated successfully!');
 		initializePosts();
 		setMode('add');
 		setPost(initialState);
@@ -57,7 +57,7 @@ export function PostsProvider({ children }) {
 
 	const removePost = async id => {
 		await deletePost(id);
-		toast.success('Recipe deleted successfully!');
+		toast.success('Post deleted successfully!');
 		initializePosts();
 	};
 
