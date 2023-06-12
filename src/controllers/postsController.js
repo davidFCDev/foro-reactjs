@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
-export const addNewPost = async post => {
+export const createPost = async post => {
 	await addDoc(collection(db, 'posts'), post);
 };
 

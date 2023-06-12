@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
-	addNewPost,
+	createPost,
 	getPosts,
 	deletePost,
 	updatePost,
@@ -35,7 +35,7 @@ export function PostsProvider({ children }) {
 	};
 
 	const createNewPost = async () => {
-		await addNewPost(post);
+		await createPost(post);
 		setPost(initialState);
 		toast.success('Post added successfully!');
 		initializePosts();
@@ -47,7 +47,7 @@ export function PostsProvider({ children }) {
 		setPost({ ...postToEdit });
 	};
 
-	const updateExistingRecipe = async () => {
+	const updateExistingPost = async () => {
 		await updatePost(post);
 		toast.success('Recipe updated successfully!');
 		initializePosts();
@@ -55,7 +55,7 @@ export function PostsProvider({ children }) {
 		setPost(initialState);
 	};
 
-	const removeRecipe = async id => {
+	const removePost = async id => {
 		await deletePost(id);
 		toast.success('Recipe deleted successfully!');
 		initializePosts();
@@ -70,9 +70,9 @@ export function PostsProvider({ children }) {
 			value={{
 				createNewPost,
 				editPost,
-				updateExistingRecipe,
+				updateExistingPost,
 				initializePosts,
-				removeRecipe,
+				removePost,
 				setMode,
 				setPost,
 				setPosts,
