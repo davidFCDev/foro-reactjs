@@ -21,7 +21,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className='border-b px-10 py-4'>
+		<nav className='border-b px-10 py-4 font-warp'>
 			<div className='w-full flex justify-between items-center'>
 				<Link to='/' className='flex items-center gap-3'>
 					<img src='/logo.png' alt='logo' className='w-14' />

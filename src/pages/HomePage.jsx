@@ -31,8 +31,8 @@ const HomePage = () => {
 
 	return (
 		<div className='w-full min-h-screen'>
-			<h1 className='text-2xl font-semibold text-center pt-10 '>
-				Welcome to R&M forum
+			<h1 className='text-2xl font-semibold text-center border-b py-3 '>
+				Welcome to <span className='text-red-500 text-3xl'>R</span> & <span className='text-red-500 text-3xl'>M</span> forum
 			</h1>
 			<section className='flex py-5 gap-20'>
 				<form onSubmit={addNewPost} className='flex flex-col gap-5 px-5 w-72'>

@@ -10,6 +10,7 @@ import { PostsProvider } from './context/PostContext';
 import { Toaster } from 'react-hot-toast';
 import PostPage from './pages/PostPage';
 import PerfilPage from './pages/PerfilPage';
+import Sound from './components/Sound';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 			<AuthProvider>
 				<PostsProvider>
 					<Navbar />
+					<Sound />
 					<div className='flex min-h-screen'>
 						<Routes>
 							<Route path='/' element={<Root />} />

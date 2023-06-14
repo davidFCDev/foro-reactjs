@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { Alert } from '../components/Alert';
 import { useAuth } from '../context/AuthContext';
 import { GrPowerReset } from 'react-icons/gr';
 
@@ -19,10 +18,11 @@ const LoginPage = () => {
 		setError('');
 		try {
 			await login(user.email, user.password);
-			navigate('/dashboard');
+			navigate('/posts');
 			toast.success('Welcome!');
 		} catch (error) {
 			setError(error.message);
+			toast.error(error.message);
 		}
 	};
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
 								id='email'
 								onChange={handleChange}
 								placeholder='email@youremail.com'
-								className='py-1 px-2 rounded focus:outline-none text-neutral-800 border focus:bg-neutral-100 placeholder:text-sm placeholder:text-neutral-300'
+								className='w-64 py-1 px-2 rounded focus:outline-none text-neutral-800 border focus:bg-neutral-100 placeholder:text-sm placeholder:text-neutral-300'
 							/>
 						</div>
 						<div className='flex flex-col gap-1'>
@@ -77,32 +77,31 @@ const LoginPage = () => {
 								id='password'
 								placeholder='********'
 								onChange={handleChange}
-								className='py-1 px-2 rounded focus:outline-none text-neutral-800 border focus:bg-neutral-100 placeholder:text-sm placeholder:text-neutral-300'
+								className='w-64 py-1 px-2 rounded focus:outline-none text-neutral-800 border focus:bg-neutral-100 placeholder:text-sm placeholder:text-neutral-300'
 							/>
 						</div>
-						<div className='flex flex-col gap-2 mt-3'>
+						<div className='flex flex-col gap-4 mt-3'>
 							<button
 								type='submit'
-								className='py-1 px-2 rounded bg-red-600 hover:bg-red-500 text-white font-semibold'
+								className='py-1 px-2 rounded bg-red-600 hover:bg-red-500 text-white font-semibold shadow'
 							>
 								Login
 							</button>
-							<p className='text-xs text-neutral-700 flex justify-between px-3 font-light'>
+							<p className='text-sm text-neutral-700 flex justify-between px-2'>
 								Do not have an account?
-								<Link to='/register' className='font-semibold'>
+								<Link to='/register' className='font-semibold hover:underline'>
 									Register
 								</Link>
 							</p>
 							<button
 								onClick={handleResetPassword}
-								className='text-xs text-red-500 flex justify-center items-center gap-1 px-3 font-light hover:underline'
+								className='text-sm flex justify-center items-center gap-1 px-3 shadow hover:shadow-md'
 							>
 								Reset password
 								<GrPowerReset />
 							</button>
 						</div>
 					</form>
-					{error && <Alert message={error} />}
 				</div>
 			</div>
 		</div>
