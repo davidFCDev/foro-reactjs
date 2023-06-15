@@ -8,7 +8,7 @@ export default {
 				secondary: '#EF4444',
 				tertiary: '#0b1e46',
 				glow: '#D692D7',
-				glow2: '#0a1c37',
+				glow2: '#381A54',
 			},
 			fontFamily: {
 				sans: ['Poppins', 'sans-serif'],

@@ -31,8 +31,8 @@ const HomePage = () => {
 
 	return (
 		<div className='w-full min-h-screen'>
-			<h1 className='text-2xl font-semibold text-center border-b py-3 '>
-				Welcome to <span className='text-red-500 text-3xl'>R</span> & <span className='text-red-500 text-3xl'>M</span> forum
+			<h1 className='text-4xl font-semibold text-center py-2 '>
+				Welcome to <span className='text-red-500 text-5xl'>R</span> & <span className='text-red-500 text-5xl'>M</span> forum !
 			</h1>
 			<section className='flex py-5 gap-20'>
 				<form onSubmit={addNewPost} className='flex flex-col gap-5 px-5 w-72'>
@@ -64,14 +64,14 @@ const HomePage = () => {
 
 				<div className='w-full flex flex-col gap-5'>
 					<h1 className='font-semibold text-2xl flex items-center gap-1'>
-						<BiRightArrow /> Posts ({posts.length})
+						<BiRightArrow /> Posts ({posts.length}):
 					</h1>
 					<div className='flex flex-wrap gap-3'>
 						{posts.map(post => {
 							return (
 								<div
 									key={post.id}
-									className='flex gap-6 items-center w-96 border p-4 bg-glow2 border-neutral-700 hover:border-neutral-500 hover:cursor-pointer'
+									className='flex gap-6 items-center w-96 border p-4 bg-glow2 border-neutral-600 hover:border-neutral-400 hover:cursor-pointer'
 									onClick={() => redirectToPost(post.id)}
 								>
 									<img
