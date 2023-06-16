@@ -22,25 +22,28 @@ const Navbar = () => {
 
 	return (
 		<nav className='px-10 py-6 font-warp nav'>
-			<div className='w-full flex justify-between items-center'>
+			<div className='w-full flex justify-between items-center text-neutral-100'>
 				<Link to='/' className='flex items-center gap-3'>
 					<img src='/logo.png' alt='logo' className='w-14' />
 					<img src='/tituloLogo.png' alt='logo' className='w-36' />
 				</Link>
 				{user ? (
-					<div className='flex gap-5 items-center'>
-						<p>{user.email}</p>
+					<div className='flex gap-1 items-center'>
+						<p className='bg-tertiary rounded p-2 shadow'>{user.email}</p>
 						<Link to='/posts'>
-							<p>
+							<p className='bg-tertiary rounded p-2 shadow'>
 								<MdForum className='text-2xl hover:text-red-600' />
 							</p>
 						</Link>
 						<Link to='/perfil'>
-							<p>
+							<p className='bg-tertiary rounded p-2 shadow'>
 								<FiUser className='text-2xl hover:text-red-600' />
 							</p>
 						</Link>
-						<button onClick={handleLogout}>
+						<button
+							onClick={handleLogout}
+							className='bg-tertiary rounded p-2 shadow'
+						>
 							<IoMdLogOut className='text-2xl hover:text-red-600' />
 						</button>
 					</div>

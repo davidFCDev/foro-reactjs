@@ -5,15 +5,26 @@ import {
 	collection,
 	getDocs,
 	deleteDoc,
+	serverTimestamp,
+	orderBy,
+	query,
+	updateDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export const createPost = async post => {
-	await addDoc(collection(db, 'posts'), post);
+	const newPost = {
+		...post,
+		createdAt: serverTimestamp(),
+		liked: false,
+	};
+
+	await addDoc(collection(db, 'posts'), newPost);
 };
 
 export const getPosts = async () => {
-	const querySnapshot = await getDocs(collection(db, 'posts'));
+	const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'));
+	const querySnapshot = await getDocs(q);
 
 	const posts = querySnapshot.docs.map(doc => {
 		return { ...doc.data(), id: doc.id };
@@ -22,12 +33,9 @@ export const getPosts = async () => {
 };
 
 export const updatePost = async post => {
-	await setDoc(doc(db, 'posts', post.id), {
-		title: post.title,
-		description: post.description,
-		image: post.image,
-		createdAt: post.createdAt,
-	});
+  await updateDoc(doc(db, 'posts', post.id), {
+    liked: post.liked,
+  });
 };
 
 export const deletePost = async id => {

@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { usePosts } from '../context/PostContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getApiData } from '../controllers/apiController';
 import { BiRightArrow } from 'react-icons/bi';
+import {RiRadioButtonLine} from 'react-icons/ri';
 
 const HomePage = () => {
 	const navigate = useNavigate();
 	const { posts, post, setPost, createNewPost } = usePosts();
+	const [currentTime, setCurrentTime] = useState(new Date());
 
 	const addNewPost = e => {
 		e.preventDefault();
@@ -23,20 +25,27 @@ const HomePage = () => {
 			const image = response.data.image;
 			setPost(prevPost => ({ ...prevPost, image }));
 		};
-
-		if (posts.length > 0) {
-			fetchRandomImage();
-		}
+		fetchRandomImage();
 	}, [posts]);
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setCurrentTime(new Date());
+		}, 1000);
+
+		return () => {
+			clearInterval(timer);
+		};
+	}, []);
 
 	return (
 		<div className='w-full min-h-screen'>
 			<h1 className='text-4xl font-semibold text-center py-2 '>
-				Welcome to <span className='text-red-500 text-5xl'>R</span> & <span className='text-red-500 text-5xl'>M</span> forum !
+				Main forum
 			</h1>
 			<section className='flex py-5 gap-20'>
 				<form onSubmit={addNewPost} className='flex flex-col gap-5 px-5 w-72'>
-					<h1 className='font-semibold text-2xl flex items-center gap-1'>
+					<h1 className='font-semibold text-2xl flex items-center gap-1 bg-g rounded p-1'>
 						<BiRightArrow />
 						New Post
 					</h1>
@@ -66,24 +75,40 @@ const HomePage = () => {
 					<h1 className='font-semibold text-2xl flex items-center gap-1'>
 						<BiRightArrow /> Posts ({posts.length}):
 					</h1>
-					<div className='flex flex-wrap gap-3'>
+					<div className='flex flex-col gap-2'>
 						{posts.map(post => {
+							const postCreatedAt = post.createdAt.toDate();
+							const timeDiffMinutes = Math.floor(
+								(currentTime - postCreatedAt) / (1000 * 60)
+							);
+							const isNewPost = timeDiffMinutes <= 10;
 							return (
 								<div
 									key={post.id}
-									className='flex gap-6 items-center w-96 border p-4 bg-glow2 border-neutral-600 hover:border-neutral-400 hover:cursor-pointer'
+									className='flex gap-6 items-center w-[80%] border px-5 py-2 bg-glow2 border-neutral-600 hover:border-neutral-400 hover:cursor-pointer'
 									onClick={() => redirectToPost(post.id)}
 								>
 									<img
 										src={post.image}
 										alt='random'
-										className='w-14 h-14 rounded-full shadow shadow-neutral-500'
+										className='w-10 h-10 rounded-full shadow shadow-neutral-500'
 									/>
-									<div className='flex flex-col w-full'>
-										<div className='flex justify-between'>
+									<div className='flex w-full items-center justify-between'>
+										<div>
 											<h2 className='text-2xl'>{post.title}</h2>
 										</div>
-										<p className='text-sm'>Created: 12/06/2023 15:30</p>
+										<div className='text-sm flex items-center gap-4'>
+											{isNewPost && (
+												<p className='text-sm flex items-center gap-4'>
+													<span className='text-red-500 animate-pulse'>
+														<RiRadioButtonLine />
+													</span>
+												</p>
+											)}
+											<span>
+												{new Date(post.createdAt.toDate()).toLocaleString()}
+											</span>
+										</div>
 									</div>
 								</div>
 							);

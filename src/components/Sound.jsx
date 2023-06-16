@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { MdMusicNote, MdMusicOff } from 'react-icons/md';
 
 const Sound = () => {
-	const [soundOn, setSoundOn] = useState(null);
+	const [soundOn, setSoundOn] = useState(false);
 
 	const handleSoundToggle = () => {
 		setSoundOn(!soundOn);
 	};
 
 	return (
-		<div className='absolute left-2 bottom-3 flex gap-2 items-center'>
+		<div className='fixed left-2 bottom-3 flex gap-2 items-center'>
 			<div className='flex gap-4'>
 				<label className='switch'>
 					<input
