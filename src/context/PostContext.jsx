@@ -25,6 +25,8 @@ export function PostsProvider({ children }) {
     image: '',
     createdAt: '',
     liked: false,
+		disliked: false,
+		comments: [],
   };
   const [post, setPost] = useState(initialState);
   const [posts, setPosts] = useState([]);
@@ -73,7 +75,33 @@ export function PostsProvider({ children }) {
 			console.error(error);
 		}
 	};
+
+	const togglePostDisliked = async id => {
+		try {
+			const updatedPosts = posts.map(post =>
+				post.id === id ? { ...post, disliked: !post.disliked } : post
+			);
+			setPosts(updatedPosts);
+			const postFound = updatedPosts.find(post => post.id === id);
+			await updatePost(postFound);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	
+	const updatePostComments = async (id, comments) => {
+		try {
+			const updatedPosts = posts.map(post =>
+				post.id === id ? { ...post, comments } : post
+			);
+			setPosts(updatedPosts);
+			const postFound = updatedPosts.find(post => post.id === id);
+			await updatePost(postFound);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 
   useEffect(() => {
     initializePosts();
@@ -84,8 +112,10 @@ export function PostsProvider({ children }) {
 			value={{
 				createNewPost,
 				initializePosts,
+				updatePostComments,
 				removePost,
 				togglePostLiked,
+				togglePostDisliked,
 				setMode,
 				setPost,
 				setPosts,

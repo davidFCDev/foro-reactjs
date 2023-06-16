@@ -17,6 +17,8 @@ export const createPost = async post => {
 		...post,
 		createdAt: serverTimestamp(),
 		liked: false,
+		disliked: false,
+		comments: [],
 	};
 
 	await addDoc(collection(db, 'posts'), newPost);
@@ -35,6 +37,8 @@ export const getPosts = async () => {
 export const updatePost = async post => {
   await updateDoc(doc(db, 'posts', post.id), {
     liked: post.liked,
+		disliked: post.disliked,
+		comments: post.comments,
   });
 };
 
