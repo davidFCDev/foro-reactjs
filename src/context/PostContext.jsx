@@ -10,60 +10,59 @@ import { toast } from 'react-hot-toast';
 const postContext = createContext();
 
 export const usePosts = () => {
-  const context = useContext(postContext);
-  if (!context) {
-    throw new Error('usePosts must be used within a PostsProvider');
-  }
-  return context;
+	const context = useContext(postContext);
+	if (!context) {
+		throw new Error('usePosts must be used within a PostsProvider');
+	}
+	return context;
 };
 
 export function PostsProvider({ children }) {
-  const [mode, setMode] = useState('add');
-  const initialState = {
-    title: '',
-    description: '',
-    image: '',
-    createdAt: '',
-    liked: false,
-		disliked: false,
+	const [mode, setMode] = useState('add');
+	const initialState = {
+		title: '',
+		description: '',
+		image: '',
+		createdAt: '',
+		liked: false,
 		comments: [],
-  };
-  const [post, setPost] = useState(initialState);
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+	};
+	const [post, setPost] = useState(initialState);
+	const [posts, setPosts] = useState([]);
+	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(false);
 
-  const initializePosts = async () => {
-    try {
-      const fetchedPosts = await getPosts();
-      setPosts([...fetchedPosts]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const initializePosts = async () => {
+		try {
+			const fetchedPosts = await getPosts();
+			setPosts([...fetchedPosts]);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const createNewPost = async () => {
-    try {
-      await createPost(post);
-      setPost(initialState);
-      toast.success('Post added successfully!');
-      initializePosts();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const createNewPost = async () => {
+		try {
+			await createPost(post);
+			setPost(initialState);
+			toast.success('Post added successfully!');
+			initializePosts();
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const removePost = async id => {
-    try {
-      await deletePost(id);
-      toast.success('Post deleted successfully!');
-      initializePosts();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const removePost = async id => {
+		try {
+			await deletePost(id);
+			toast.success('Post deleted successfully!');
+			initializePosts();
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const togglePostLiked = async id => {
+	const togglePostLiked = async id => {
 		try {
 			const updatedPosts = posts.map(post =>
 				post.id === id ? { ...post, liked: !post.liked } : post
@@ -76,19 +75,6 @@ export function PostsProvider({ children }) {
 		}
 	};
 
-	const togglePostDisliked = async id => {
-		try {
-			const updatedPosts = posts.map(post =>
-				post.id === id ? { ...post, disliked: !post.disliked } : post
-			);
-			setPosts(updatedPosts);
-			const postFound = updatedPosts.find(post => post.id === id);
-			await updatePost(postFound);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-	
 	const updatePostComments = async (id, comments) => {
 		try {
 			const updatedPosts = posts.map(post =>
@@ -102,10 +88,9 @@ export function PostsProvider({ children }) {
 		}
 	};
 
-
-  useEffect(() => {
-    initializePosts();
-  }, []);
+	useEffect(() => {
+		initializePosts();
+	}, []);
 
 	return (
 		<postContext.Provider
@@ -115,7 +100,6 @@ export function PostsProvider({ children }) {
 				updatePostComments,
 				removePost,
 				togglePostLiked,
-				togglePostDisliked,
 				setMode,
 				setPost,
 				setPosts,

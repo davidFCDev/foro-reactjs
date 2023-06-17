@@ -6,7 +6,7 @@ export default {
 			colors: {
 				primary: '#051535',
 				secondary: '#EF4444',
-				tertiary: '#432261',
+				tertiary: '#4F2F6D',
 				glow: '#835EA7',
 				glow2: '#381A54',
 			},

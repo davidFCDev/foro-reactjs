@@ -1,6 +1,5 @@
 import {
 	addDoc,
-	setDoc,
 	doc,
 	collection,
 	getDocs,
@@ -17,7 +16,6 @@ export const createPost = async post => {
 		...post,
 		createdAt: serverTimestamp(),
 		liked: false,
-		disliked: false,
 		comments: [],
 	};
 
@@ -35,11 +33,10 @@ export const getPosts = async () => {
 };
 
 export const updatePost = async post => {
-  await updateDoc(doc(db, 'posts', post.id), {
-    liked: post.liked,
-		disliked: post.disliked,
+	await updateDoc(doc(db, 'posts', post.id), {
+		liked: post.liked,
 		comments: post.comments,
-  });
+	});
 };
 
 export const deletePost = async id => {

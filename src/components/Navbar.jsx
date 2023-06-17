@@ -50,12 +50,12 @@ const Navbar = () => {
 				) : (
 					<div className='flex gap-2'>
 						<Link to='/login'>
-							<p className='px-4 py-2 border border-red-600 bg-red-600 rounded hover:bg-red-500'>
+							<p className='px-4 py-2 bg-red-600 rounded hover:bg-red-400'>
 								Login
 							</p>
 						</Link>
 						<Link to='/register'>
-							<p className='px-4 py-2 border border-red-600 rounded hover:bg-red-600'>
+							<p className='px-4 py-2 shadow bg-tertiary rounded hover:bg-glow'>
 								Register
 							</p>
 						</Link>

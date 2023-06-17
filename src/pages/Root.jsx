@@ -15,10 +15,10 @@ const Root = () => {
 	};
 
 	return (
-		<section className='w-full py-24 gap-10 flex flex-col items-center principal'>
+		<section className='w-full py-16 gap-10 flex flex-col items-center principal'>
 			<div className='flex justify-center items-center gap-44'>
 				<div className='flex flex-col gap-10 p-3 w-96'>
-					<h1 className='text-3xl font-semibold text-glow'>
+					<h1 className='text-3xl font-semibold text-secondary'>
 						Wubba lubba dub dub!
 					</h1>
 					<div className='flex flex-col gap-2'>
