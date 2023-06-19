@@ -15,7 +15,7 @@ const Root = () => {
 	};
 
 	return (
-		<section className='w-full py-10 sm:py-16 gap-5 sm:gap-12 flex flex-col items-center principal'>
+		<section className='w-full px-10 py-10 sm:py-16 gap-5 sm:gap-12 flex flex-col items-center principal'>
 			<div className='flex flex-col-reverse sm:flex-row justify-center items-center gap-5 sm:gap-44'>
 			
 				<div className='flex flex-col gap-2 sm:gap-10 p-9 sm:p-3 w-96'>
@@ -38,7 +38,7 @@ const Root = () => {
 					<img
 						src='https://i.pinimg.com/originals/82/d8/a4/82d8a4fec91792a434f77392d36d56e7.gif'
 						alt='body'
-						className='rounded-full w-56 sm:w-80 h-56 sm:h-80 shadow-md shadow-neutral-800 hover:scale-105 transition-all duration-300'
+						className='rounded-full w-56 md:w-80 h-56 md:h-80 shadow-md shadow-neutral-800 hover:scale-105 transition-all duration-300'
 					/>
 				</div>
 
