@@ -55,7 +55,7 @@ const Navbar = () => {
 							</p>
 						</Link>
 						<Link to='/register'>
-							<p className='px-2 sm:px-4 py-1 sm:py-2 shadow bg-tertiary rounded hover:bg-glow'>
+							<p className='px-2 sm:px-4 py-2 shadow bg-tertiary rounded hover:bg-glow'>
 								Register
 							</p>
 						</Link>
