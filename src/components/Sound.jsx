@@ -9,7 +9,7 @@ const Sound = () => {
 	};
 
 	return (
-		<div className='fixed left-2 bottom-3 flex gap-2 items-center'>
+		<div className='fixed left-1 sm:left-2 bottom-2 sm:bottom-3 flex gap-1 sm:gap-2 items-center'>
 			<div className='flex gap-4'>
 				<label className='switch'>
 					<input

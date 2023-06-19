@@ -35,15 +35,15 @@ const PerfilPage = () => {
 	}, []);
 
 	return (
-		<div className='w-full flex justify-center py-5 gap-20'>
+		<div className='w-full flex flex-col-reverse sm:flex-row justify-end sm:justify-center py-10 sm:py-5 px-6 gap-12 sm:gap-20'>
 			<div className='flex flex-col'>
 				{user && (
-					<div className='p-10 bg-glow2 rounded shadow shadow-neutral-800 flex flex-col gap-5'>
+					<div className='p-5 sm:p-10 bg-glow2 rounded shadow shadow-neutral-800 flex flex-col gap-4 sm:gap-5'>
 						<div className='flex items-end justify-between'>
 							<FiUser className='text-4xl bg-glow rounded p-2' />
 							<h2 className='font-bold text-3xl'>PROFILE</h2>
 						</div>
-						<h1 className='text-2xl font-semibold bg-glow rounded px-4 py-1'>
+						<h1 className='text-xl font-semibold bg-glow rounded px-4 py-1'>
 							Email: {user.email}
 						</h1>
 
@@ -103,7 +103,7 @@ const PerfilPage = () => {
 					</div>
 				)}
 			</div>
-			<div className='flex flex-col gap-10 items-center'>
+			<div className='flex-col gap-10 items-center hidden sm:flex'>
 				<div className='bg-glow2 rounded-full p-5'>
 					<img
 						src={image}

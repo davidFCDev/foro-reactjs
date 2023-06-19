@@ -21,11 +21,11 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className='px-10 py-6 font-warp nav'>
+		<nav className='px-3 sm:px-10 py-4 sm:py-6 font-warp nav'>
 			<div className='w-full flex justify-between items-center text-neutral-100'>
 				<Link to='/' className='flex items-center gap-3'>
-					<img src='/logo.png' alt='logo' className='w-14' />
-					<img src='/tituloLogo.png' alt='logo' className='w-36' />
+					<img src='/logo.png' alt='logo' className='w-10 sm:w-14' />
+					<img src='/tituloLogo.png' alt='logo' className='sm:block hidden w-36' />
 				</Link>
 				{user ? (
 					<div className='flex gap-1 items-center'>
@@ -50,12 +50,12 @@ const Navbar = () => {
 				) : (
 					<div className='flex gap-2'>
 						<Link to='/login'>
-							<p className='px-4 py-2 bg-red-600 rounded hover:bg-red-400'>
+							<p className='px-2 sm:px-4 py-2 bg-red-600 rounded hover:bg-red-400'>
 								Login
 							</p>
 						</Link>
 						<Link to='/register'>
-							<p className='px-4 py-2 shadow bg-tertiary rounded hover:bg-glow'>
+							<p className='px-2 sm:px-4 py-1 sm:py-2 shadow bg-tertiary rounded hover:bg-glow'>
 								Register
 							</p>
 						</Link>

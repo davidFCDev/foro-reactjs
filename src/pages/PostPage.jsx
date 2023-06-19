@@ -54,22 +54,40 @@ const PostPage = () => {
 	}
 
 	return (
-		<div className='p-14 w-full min-h-screen'>
-			<div className='flex shadow shadow-black p-10 gap-10 mx-44 bg-glow2'>
-				<div className='bg-neutral-200 w-32 h-28 flex justify-center items-center rounded-full'>
-					<img
-						src={selectedPost.image}
-						alt='random'
-						className='p-1 rounded-full shadow'
-					/>
+		<div className='py-10 sm:p-10 w-full min-h-screen'>
+			<div className='flex shadow shadow-black p-5 sm:p-10 gap-5 sm:gap-10 mx-6 sm:mx-20 bg-glow2'>
+				<div className='flex flex-col justify-between'>
+					<div className='bg-neutral-200 flex justify-center items-center rounded-full w-16 sm:w-32 h-16 sm:h-32 '>
+						<img
+							src={selectedPost.image}
+							alt='random'
+							className='p-1 rounded-full shadow'
+						/>
+					</div>
+					<div className='flex flex-col gap-3 justify-end items-center sm:hidden'>
+						<button className='text-3xl transition ' onClick={handleLike}>
+							{selectedPost.liked === true ? (
+								<AiTwotoneLike className='text-purple-500' />
+							) : (
+								<AiOutlineLike />
+							)}
+						</button>
+						<button
+							className='bg-red-600 rounded p-1 sm:p-2 text-md hover:bg-red-500'
+							onClick={handleDelete}
+						>
+							Delete
+						</button>
+					</div>
 				</div>
-				<div className='flex flex-col gap-2 w-full'>
-					<div className='flex justify-between items-center'>
+
+				<div className='flex flex-col gap-4 w-full'>
+					<div className='flex justify-between items-start sm:items-center'>
 						<h1 className='text-2xl font-semibold text-neutral-200 flex items-center gap-2'>
-							<VscCommentDiscussion className='text-3xl' />
+							<VscCommentDiscussion className='text-3xl hidden sm:block' />
 							{selectedPost.title}
 						</h1>
-						<div className='flex gap-3 justify-end items-center'>
+						<div className='hidden sm:flex gap-3 justify-end items-center'>
 							<button className='text-3xl transition ' onClick={handleLike}>
 								{selectedPost.liked === true ? (
 									<AiTwotoneLike className='text-purple-500' />
@@ -78,7 +96,7 @@ const PostPage = () => {
 								)}
 							</button>
 							<button
-								className='bg-red-600 rounded py-2 px-2 text-md hover:bg-red-500'
+								className='bg-red-600 rounded p-1 sm:p-2 text-md hover:bg-red-500'
 								onClick={handleDelete}
 							>
 								Delete
